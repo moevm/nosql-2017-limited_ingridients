@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/EatProject.iml" filepath="$PROJECT_DIR$/EatProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Client.iml" filepath="$PROJECT_DIR$/Client.iml" />
+      <module fileurl="file://F:\NoSQL\nosql-2017-limited_ingridients\Client\EatProject.iml" filepath="F:\NoSQL\nosql-2017-limited_ingridients\Client\EatProject.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
