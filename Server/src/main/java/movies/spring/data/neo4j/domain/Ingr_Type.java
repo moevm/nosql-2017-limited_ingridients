@@ -18,6 +18,8 @@ public class Ingr_Type {
     private Long id;
 
     private String label;
+    @Relationship(type = TYPES_INGR_CONTAINTS, direction = Relationship.OUTGOING)
+    private List<Ingredient> ingrs = new ArrayList<>();
 
     public Ingr_Type() {
     }
