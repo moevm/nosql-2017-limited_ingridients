@@ -9,21 +9,22 @@ import org.neo4j.ogm.annotation.Relationship;
 import java.util.ArrayList;
 import java.util.List;
 
-import static movies.spring.data.neo4j.constants.EATRelations.TYPES_INGR_CONTAINTS;
+import static movies.spring.data.neo4j.constants.EATRelations.FRIDGE_CONTAINTS;
+import static movies.spring.data.neo4j.constants.EATRelations.MENU_CONTAINTS;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @NodeEntity
-public class Ingr_Type {
+public class Menu {
     @GraphId
     private Long id;
 
-    private String label;
+    private String userID;
 
-    public Ingr_Type() {
+    public Menu() {
     }
 
-    public Ingr_Type(String label) {
-        this.label = label;
+    public Menu(String userID) {
+        this.userID = userID;
     }
 
     public Long getId() {
@@ -34,15 +35,15 @@ public class Ingr_Type {
         this.id = id;
     }
 
-    public String getLabel() {
-        return label;
+    public String getUserID() {
+        return userID;
     }
 
-    public List<Ingredient> getIngrs() {
-        return ingrs;
+    public List<Meal> getMeals() {
+        return meals;
     }
 
-    public void addIngridient(Ingredient ingredient){
-        this.ingrs.add(ingredient);
+    public void addMeal(Meal meal) {
+        this.meals.add(meal);
     }
 }
