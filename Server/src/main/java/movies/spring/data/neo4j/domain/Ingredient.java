@@ -6,26 +6,31 @@ import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static movies.spring.data.neo4j.constants.EATRelations.TYPES_INGR_CONTAINTS;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @NodeEntity
-public class Ingr_Type {
+public class Ingredient {
+
     @GraphId
     private Long id;
 
     private String label;
-    @Relationship(type = TYPES_INGR_CONTAINTS, direction = Relationship.OUTGOING)
-    private List<Ingredient> ingrs = new ArrayList<>();
 
-    public Ingr_Type() {
+    private Double weight;
+
+    private String measure;
+
+    @Relationship(type = TYPES_INGR_CONTAINTS, direction = Relationship.INCOMING)
+    private Ingr_Type type;
+
+    public Ingredient() {
     }
 
-    public Ingr_Type(String label) {
+    public Ingredient(String label, Double weight, String measure) {
         this.label = label;
+        this.weight = weight;
+        this.measure = measure;
     }
 
     public Long getId() {
@@ -40,11 +45,19 @@ public class Ingr_Type {
         return label;
     }
 
-    public List<Ingredient> getIngrs() {
-        return ingrs;
+    public Double getWeight() {
+        return weight;
     }
 
-    public void addIngridient(Ingredient ingredient){
-        this.ingrs.add(ingredient);
+    public String getMeasure() {
+        return measure;
+    }
+
+    public Ingr_Type getType() {
+        return type;
+    }
+
+    public void setType(Ingr_Type type) {
+        this.type = type;
     }
 }

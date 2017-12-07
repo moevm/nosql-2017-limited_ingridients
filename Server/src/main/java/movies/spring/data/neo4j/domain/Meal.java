@@ -9,22 +9,25 @@ import org.neo4j.ogm.annotation.Relationship;
 import java.util.ArrayList;
 import java.util.List;
 
+import static movies.spring.data.neo4j.constants.EATRelations.MEAL_CONTAINTS;
 import static movies.spring.data.neo4j.constants.EATRelations.TYPES_INGR_CONTAINTS;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @NodeEntity
-public class Ingr_Type {
+public class Meal {
     @GraphId
     private Long id;
 
     private String label;
-    @Relationship(type = TYPES_INGR_CONTAINTS, direction = Relationship.OUTGOING)
-    private List<Ingredient> ingrs = new ArrayList<>();
 
-    public Ingr_Type() {
+    @Relationship(type = MEAL_CONTAINTS, direction = Relationship.OUTGOING)
+    private List<Dish_Type> dish_types = new ArrayList<>();
+
+
+    public Meal() {
     }
 
-    public Ingr_Type(String label) {
+    public Meal(String label) {
         this.label = label;
     }
 
@@ -40,11 +43,11 @@ public class Ingr_Type {
         return label;
     }
 
-    public List<Ingredient> getIngrs() {
-        return ingrs;
+    public List<Dish_Type> getDish_types() {
+        return dish_types;
     }
 
-    public void addIngridient(Ingredient ingredient){
-        this.ingrs.add(ingredient);
+    public void addDish_type(Dish_Type dish_type){
+        this.dish_types.add(dish_type);
     }
 }
