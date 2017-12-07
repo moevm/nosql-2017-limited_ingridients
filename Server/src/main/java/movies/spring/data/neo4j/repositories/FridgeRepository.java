@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(collectionResourceRel = "fridges", path = "fridges")
-public interface  FridgeRepository extends PagingAndSortingRepository<Fridge, Long> {
+public interface FridgeRepository extends PagingAndSortingRepository<Fridge, Long> {
 
     @Query("CREATE (userFirdg:Fridge {userID:{userID}})")
     void createNewFridge(@Param("userID") String userID);
