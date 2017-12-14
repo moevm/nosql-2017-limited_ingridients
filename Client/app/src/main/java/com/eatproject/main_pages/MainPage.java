@@ -17,6 +17,9 @@ public class MainPage extends AppCompatActivity {
     private Button eat;
     private Button showbase;
     private Context context;
+    private Long fridgeID = 6L;
+    private Long menuID = 11L;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,13 @@ public class MainPage extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        intent = getIntent();
+
+        if(intent!=null){
+            fridgeID = intent.getLongExtra(KEYS.FRIDGE_ID,0);
+            menuID = intent.getLongExtra(KEYS.MENU_ID,0);
+        }
+
         context = this;
         eat = (Button) findViewById(R.id.eat);
         showbase = (Button) findViewById(R.id.showbase);
@@ -32,7 +42,7 @@ public class MainPage extends AppCompatActivity {
         eat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, ShowDish.class);
+                intent.setClass(context, ShowMeal.class);
                 intent.putExtra(KEYS.FIND, VALUES.FINDEAT);
                 startActivity(intent);
             }
@@ -41,7 +51,7 @@ public class MainPage extends AppCompatActivity {
         showbase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, ShowBase.class);
+                intent.setClass(context, ShowBase.class);
                 startActivity(intent);
             }
         });

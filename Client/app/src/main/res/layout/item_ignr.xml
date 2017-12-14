@@ -39,7 +39,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Title"
@@ -76,7 +76,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/have"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -104,7 +104,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/need"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

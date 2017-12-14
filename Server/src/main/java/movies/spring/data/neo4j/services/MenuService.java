@@ -13,12 +13,12 @@ public class MenuService {
     private MenuRepository menuRepository;
 
     @Transactional()
-    public void  createNewMenu(String userID) {
-        menuRepository.createNewMenu(userID);
+    public Menu  createNewMenu(String userID) {
+        return menuRepository.createNewMenu(userID);
     }
 
     @Transactional(readOnly = true)
-    public Menu requestMenu(String userID) {
-        return menuRepository.requestMenu(userID);
+    public Menu getMenuByName(String userID) {
+        return menuRepository.getMenuByName(userID);
     }
 }

@@ -13,7 +13,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/receptImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -21,7 +21,7 @@
             app:srcCompat="@drawable/eat_photo" />
 
         <Button
-            android:id="@+id/addsubject"
+            android:id="@+id/chose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -36,6 +36,61 @@
             android:text="Выбрать блюдо"
             android:textSize="13dip" />
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Описание:"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="4dp"
+            android:background="@android:color/darker_gray"
+            android:padding="15dp" />
+
+        <TextView
+            android:id="@+id/someSubs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="TextView"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            tools:text="Вкусное блюдо" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Время приготовления:"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="4dp"
+            android:background="@android:color/darker_gray"
+            android:padding="15dp" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="TextView"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            tools:text="14 минут" />
 
         <TextView
             android:id="@+id/textView4"
@@ -56,6 +111,7 @@
             android:padding="15dp" />
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/ingrs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_ignr" />
@@ -67,6 +123,7 @@
         android:layout_height="56dp"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        android:visibility="gone"
         app:backgroundTint="@android:color/holo_green_light"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 </android.support.design.widget.CoordinatorLayout>

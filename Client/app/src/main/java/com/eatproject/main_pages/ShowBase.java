@@ -14,11 +14,13 @@ public class ShowBase extends AppCompatActivity {
     private Context context;
     private Button ingrs;
     private Button dish;
+    private Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_base);
-
+        intent = getIntent();
         context = this;
 
         ingrs = (Button) findViewById(R.id.ingrs);
@@ -27,7 +29,7 @@ public class ShowBase extends AppCompatActivity {
         ingrs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, ShowIngrs.class);
+                intent.setClass(context,ShowIngrs_Type.class);
                 startActivity(intent);
             }
         });
@@ -35,7 +37,7 @@ public class ShowBase extends AppCompatActivity {
         dish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, ShowDish.class);
+                intent.setClass(context,ShowMeal.class);
                 startActivity(intent);
             }
         });

@@ -20,6 +20,9 @@ public class Menu {
 
     private String userID;
 
+    @Relationship(type = MENU_CONTAINTS, direction = Relationship.OUTGOING)
+    private List<Meal> meals = new ArrayList<>();
+
     public Menu() {
     }
 

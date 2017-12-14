@@ -24,6 +24,8 @@ public class Ingredient {
     @Relationship(type = TYPES_INGR_CONTAINTS, direction = Relationship.INCOMING)
     private Ingr_Type type;
 
+    private String typeLabel;
+
     public Ingredient() {
     }
 
@@ -59,5 +61,13 @@ public class Ingredient {
 
     public void setType(Ingr_Type type) {
         this.type = type;
+    }
+
+    public String getTypeLabel() {
+        return typeLabel;
+    }
+
+    public void setTypeLabel(String typeLabel) {
+        this.typeLabel = typeLabel;
     }
 }

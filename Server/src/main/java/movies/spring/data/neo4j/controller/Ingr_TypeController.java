@@ -26,7 +26,7 @@ public class Ingr_TypeController {
     }
 
     @RequestMapping("/getAll")
-    public Collection<Ingr_Type> newIngr_Type(@RequestParam(value = "id") Long id) {
+    public Collection<Ingr_Type> getAll(@RequestParam(value = "id") Long id) {
         return ingr_typeService.getAll(id);
     }
 }

@@ -9,10 +9,10 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(collectionResourceRel = "fridges", path = "fridges")
 public interface  FridgeRepository extends PagingAndSortingRepository<Fridge, Long> {
 
-    @Query("CREATE (userFirdg:Fridge {userID:{userID}})")
-    void createNewFridge(@Param("userID") String userID);
+    @Query("CREATE (userFirdg:Fridge {userID:{userID}}) RETURN userFridg")
+    Fridge createNewFridge(@Param("userID") String userID);
 
 
     @Query("MATCH (fr:Fridge {userID: {userID}}) RETURN fr")
-    Fridge requestFridge(@Param("userID") String userID);
+    Fridge getFridgeByName(@Param("userID") String userID);
 }

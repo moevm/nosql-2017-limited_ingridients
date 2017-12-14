@@ -2,33 +2,45 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eatproject">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
+        android:name=".EATapp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".main_pages.ShowRecepts"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".main_pages.MainPage" />
+        <activity android:name=".main_pages.ShowRecepts" />
         <activity android:name=".main_pages.ShowBase" />
         <activity android:name=".main_pages.ShowIngrs" />
         <activity android:name=".main_pages.ShowDish" />
+        <activity android:name=".main_pages.ShowMeal" />
+        <activity android:name=".main_pages.OpenRecept" />
+        <activity android:name=".main_pages.ShowIngrs_Type" />
+        <activity android:name=".main_pages.createPages.Create_Dish" />
+        <activity android:name=".main_pages.createPages.Create_Meal" />
+        <activity android:name=".main_pages.createPages.Create_Ingr" />
         <activity
-            android:name=".main_pages.MainPage"
+            android:name=".main_pages.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
