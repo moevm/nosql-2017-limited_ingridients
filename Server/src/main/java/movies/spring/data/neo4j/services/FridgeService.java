@@ -13,12 +13,12 @@ public class FridgeService {
     private FridgeRepository fridgeRepository;
 
     @Transactional()
-    public void  createNewFridge(String userID) {
-        fridgeRepository.createNewFridge(userID);
+    public Fridge createNewFridge(String userID) {
+        return fridgeRepository.createNewFridge(userID);
     }
 
     @Transactional(readOnly = true)
-    public Fridge requestFridge(String userID) {
-        return fridgeRepository.requestFridge(userID);
+    public Fridge getFridgeByName(String userID) {
+        return fridgeRepository.getFridgeByName(userID);
     }
 }

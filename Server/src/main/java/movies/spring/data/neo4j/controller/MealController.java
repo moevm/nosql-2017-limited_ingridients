@@ -21,8 +21,8 @@ public class MealController {
     }
 
     @RequestMapping("/new")
-    public void  createNewMeal(@RequestParam(value = "userID")  String userID,@RequestParam(value = "label")  String label) {
-        mealService.createNewMeal(userID,label);
+    public void  createNewMeal(@RequestParam(value = "id")  Long id,@RequestParam(value = "label")  String label) {
+        mealService.createNewMeal(id,label);
     }
 
     @RequestMapping("/getAll")

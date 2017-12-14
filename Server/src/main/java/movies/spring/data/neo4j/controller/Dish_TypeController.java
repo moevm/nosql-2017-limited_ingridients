@@ -21,8 +21,8 @@ public class Dish_TypeController {
     }
 
     @RequestMapping("/new")
-    public void  createNewRecept(@RequestParam(value = "mealLabel") String mealLabel,@RequestParam(value = "label") String label) {
-        dish_typeService.createNewDish_Type(mealLabel,label);
+    public void  createNewRecept(@RequestParam(value = "id") Long id,@RequestParam(value = "label") String label) {
+        dish_typeService.createNewDish_Type(id,label);
     }
 
     @RequestMapping("/getAll")

@@ -9,10 +9,10 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(collectionResourceRel = "menu's", path = "menu's")
 public interface  MenuRepository extends PagingAndSortingRepository<Menu, Long> {
 
-    @Query("CREATE (userFirdg:Menu {userID:{userID}})")
-    void createNewMenu(@Param("userID") String userID);
+    @Query("CREATE (userFirdg:Menu {userID:{userID}}) RETURN userFirdg")
+    Menu createNewMenu(@Param("userID") String userID);
 
 
     @Query("MATCH (fr:Menu {userID: {userID}}) RETURN fr")
-    Menu requestMenu(@Param("userID") String userID);
+    Menu getMenuByName(@Param("userID") String userID);
 }

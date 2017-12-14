@@ -1,8 +1,6 @@
 package movies.spring.data.neo4j.repositories;
 
-import movies.spring.data.neo4j.domain.Fridge;
 import movies.spring.data.neo4j.domain.Ingr_Type;
-import movies.spring.data.neo4j.domain.Ingredient;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;

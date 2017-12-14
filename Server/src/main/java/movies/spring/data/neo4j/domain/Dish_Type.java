@@ -1,4 +1,4 @@
-package movies.spring.data.neo4j.domain;
+ package movies.spring.data.neo4j.domain;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -9,24 +9,25 @@ import org.neo4j.ogm.annotation.Relationship;
 import java.util.ArrayList;
 import java.util.List;
 
+import static movies.spring.data.neo4j.constants.EATRelations.DISH_TYPE_CONTAINTS;
 import static movies.spring.data.neo4j.constants.EATRelations.TYPES_INGR_CONTAINTS;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @NodeEntity
-public class Ingr_Type {
+public class Dish_Type {
     @GraphId
     private Long id;
 
     private String label;
 
-    @Relationship(type = TYPES_INGR_CONTAINTS, direction = Relationship.OUTGOING)
+    @Relationship(type = DISH_TYPE_CONTAINTS, direction = Relationship.OUTGOING)
     private List<Ingredient> ingrs = new ArrayList<>();
 
 
-    public Ingr_Type() {
+    public Dish_Type() {
     }
 
-    public Ingr_Type(String label) {
+    public Dish_Type(String label) {
         this.label = label;
     }
 

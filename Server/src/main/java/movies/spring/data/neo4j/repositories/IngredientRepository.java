@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Collection;
 
+import static movies.spring.data.neo4j.constants.EATRelations.FRIDGE_CONTAINTS;
 import static movies.spring.data.neo4j.constants.EATRelations.RECEPT_CONTAINTS;
 import static movies.spring.data.neo4j.constants.EATRelations.TYPES_INGR_CONTAINTS;
 
@@ -24,15 +25,19 @@ public interface IngredientRepository extends PagingAndSortingRepository<Ingredi
     void createNewReceptIngredient(@Param("receptLabel") String receptLabel, @Param("label") String label, @Param("weight") Double weight, @Param("measure") String measure);
 
 
-    @Query("MERGE (ingr:Ingredient) "+
-            "ON MATCH  SET ingr += { weight:{weight}+ingr.weight } "+
-            "WHERE ID(ingr)={id}")
-    void addSomeWeight(@Param("typeLabel") Long ingrID,@Param("weight") Double weight);
-
+    @Query("MERGE (newIngr_Type:Ingr_Type {label: {type_label}})-[r:"+TYPES_INGR_CONTAINTS+"]->(ingr:Ingredient {label: {ingr_label}}) "+
+            "ON MATCH  SET ingr += { weight:{weight}+ingr.weight } ")
+    void addSomeWeight(@Param("type_label") String type_label, @Param("ingr_label") String ingr_label,@Param("weight") Double weight);
 
     @Query("MATCH (newIngr_Type:Ingr_Type)-[r:"+TYPES_INGR_CONTAINTS+"]->(m:Ingredient) WHERE ID(newIngr_Type)={id} RETURN r,newIngr_Type,m")
+    Collection<Ingredient> getAllfromType(@Param("id") Long id);
+
+    @Query("MATCH (userFridge:Fridge)-[:"+FRIDGE_CONTAINTS+"]->(newIngr_Type:Ingr_Type)-[r:"+TYPES_INGR_CONTAINTS+"]->(m:Ingredient) WHERE ID(userFridge)={id} RETURN r,newIngr_Type,m")
     Collection<Ingredient> getAll(@Param("id") Long id);
 
     @Query("MATCH (newIngr_Type:Recept)-[r:"+RECEPT_CONTAINTS+"]->(m:Ingredient) WHERE ID(newIngr_Type)={id} RETURN r,newIngr_Type,m")
-    Collection<Ingredient> getAllRecept(@Param("id") Long id);
+    Collection<Ingredient> getAllfromRecept(@Param("id") Long id);
+
+//    @Query("MATCH (userFridge:Recept)-[r:"+RECEPT_CONTAINTS+"]->(m:Ingredient) WHERE ID(userFridge)={id} RETURN userFridge,r,m")
+//    Ingredient getByLabel(@Param("label") String label);
 }

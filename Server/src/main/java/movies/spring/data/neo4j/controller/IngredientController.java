@@ -26,24 +26,36 @@ public class IngredientController {
         ingredientService.createNewIngredient(typeLabel,label,(weight==null) ? 0 : weight,measure);
     }
 
+    @RequestMapping("/getAllfromType")
+    public Collection<Ingredient> getAllfromType(@RequestParam(value = "id") Long id) {
+        Collection<Ingredient> allfromType = ingredientService.getAllfromType(id);
+
+        for (Ingredient ingr :allfromType) {
+            ingr.setTypeLabel(ingr.getType().getLabel());
+            ingr.setType(null);
+        }
+
+        return allfromType;
+    }
+
     @RequestMapping("/getAll")
-    public Collection<Ingredient> getIngrs(@RequestParam(value = "id") Long id) {
+    public Collection<Ingredient> getAll(@RequestParam(value = "id") Long id) {
         return ingredientService.getAll(id);
     }
 
     @RequestMapping("/newInRecept")
-    public void  createNewReceptIngredient(@RequestParam(value = "receptLabel") String receptlabel,@RequestParam(value = "label") String label,@RequestParam(value = "weight") Double weight,@RequestParam(value = "measure") String measure) {
+    public void  createNewReceptIngredient(@RequestParam(value = "receptlabel") String receptlabel,@RequestParam(value = "label") String label,@RequestParam(value = "weight") Double weight,@RequestParam(value = "measure") String measure) {
         ingredientService.createNewReceptIngredient(receptlabel,label,weight,measure);
     }
 
     @RequestMapping("/addWeight")
-    public void addSomeWeight(@RequestParam(value = "ingrID") Long ingrID,@RequestParam(value = "weight") Double weight){
-        ingredientService.addSomeWeight(ingrID,weight);
+    public void addSomeWeight(@RequestParam(value = "type_label") String type_label, @RequestParam(value = "ingr_label") String ingr_label,@RequestParam(value = "weight") Double weight){
+        ingredientService.addSomeWeight(type_label,ingr_label,weight);
     }
 
-    @RequestMapping("/getAllRecept")
-    public Collection<Ingredient> getAllRecept(@RequestParam(value = "id") Long id) {
-        return ingredientService.getAllRecept(id);
+    @RequestMapping("/getAllfromRecept")
+    public Collection<Ingredient> getAllfromRecept(@RequestParam(value = "id") Long id) {
+        return ingredientService.getAllfromRecept(id);
     }
 
 }

@@ -19,13 +19,13 @@ public class FridgeController {
     }
 
     @RequestMapping("/new")
-    public void newFridge(@RequestParam(value = "userID") String userID) {
-        fridgeService.createNewFridge(userID);
+    public Fridge newFridge(@RequestParam(value = "userID") String userID) {
+        return fridgeService.createNewFridge(userID);
     }
 
-    @RequestMapping("/request")
-    public Fridge requestFridge(@RequestParam(value = "userID") String userID) {
-        return fridgeService.requestFridge(userID);
+    @RequestMapping("/getFridgeByName")
+    public Fridge getFridgeByName(@RequestParam(value = "userID") String userID) {
+        return fridgeService.getFridgeByName(userID);
     }
 
 

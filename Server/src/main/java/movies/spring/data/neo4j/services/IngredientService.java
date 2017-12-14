@@ -25,19 +25,23 @@ public class IngredientService {
     }
 
     @Transactional()
-    public void addSomeWeight(Long ingrID,Double weight){
-        ingredientRepository.addSomeWeight(ingrID,weight);
+    public void addSomeWeight(String type_label, String ingr_label,Double weight){
+        ingredientRepository.addSomeWeight(type_label,ingr_label,weight);
+    }
+
+    @Transactional(readOnly = true)
+    public Collection<Ingredient> getAllfromType(Long id) {
+        return ingredientRepository.getAllfromType(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Collection<Ingredient> getAllfromRecept(Long id) {
+        return ingredientRepository.getAllfromRecept(id);
     }
 
     @Transactional(readOnly = true)
     public Collection<Ingredient> getAll(Long id) {
         return ingredientRepository.getAll(id);
     }
-
-    @Transactional(readOnly = true)
-    public Collection<Ingredient> getAllRecept(Long id) {
-        return ingredientRepository.getAllRecept(id);
-    }
-
 
 }
