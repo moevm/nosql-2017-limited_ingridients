@@ -40,7 +40,22 @@ public class IngredientController {
 
     @RequestMapping("/getAll")
     public Collection<Ingredient> getAll(@RequestParam(value = "id") Long id) {
-        return ingredientService.getAll(id);
+        Collection<Ingredient> ingrs = ingredientService.getAll(id);
+        for(Ingredient ingr : ingrs){
+            ingr.setTypeLabel(ingr.getType().getLabel());
+            ingr.setType(null);
+        }
+        return ingrs;
+    }
+
+    @RequestMapping("/deleteIngredient")
+    public void deleteIngredient(@RequestParam(value = "typeLabel") String typeLabel,@RequestParam(value = "ingr_id") Long ingr_id){
+        ingredientService.deleteIngredient(typeLabel,ingr_id);
+    }
+
+    @RequestMapping("/deleteIngredientFromRecept")
+    public void deleteIngredientFromRecept(@RequestParam(value = "receptLabel") String receptLabel,@RequestParam(value = "ingr_id")  Long ingr_id){
+        ingredientService.deleteIngredientFromRecept(receptLabel,ingr_id);
     }
 
     @RequestMapping("/newInRecept")

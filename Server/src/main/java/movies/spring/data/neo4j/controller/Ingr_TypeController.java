@@ -29,4 +29,9 @@ public class Ingr_TypeController {
     public Collection<Ingr_Type> getAll(@RequestParam(value = "id") Long id) {
         return ingr_typeService.getAll(id);
     }
+
+    @RequestMapping("/delete")
+    public void deleteIngr_type(@RequestParam(value = "fridegID") Long fridegID, @RequestParam(value = "ingr_type_ID") Long ingr_type_ID){
+        ingr_typeService.deleteIngr_type(fridegID,ingr_type_ID);
+    }
 }

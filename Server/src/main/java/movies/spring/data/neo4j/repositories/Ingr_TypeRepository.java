@@ -21,4 +21,12 @@ public interface Ingr_TypeRepository extends PagingAndSortingRepository<Ingr_Typ
     @Query("MATCH (userFridge:Fridge)-[:"+FRIDGE_CONTAINTS+"]->(m:Ingr_Type) WHERE ID(userFridge)={id} RETURN m")
     Collection<Ingr_Type> getAll(@Param("id") Long id);
 
+    @Query("MATCH (userFridge:Fridge)"+
+            "WHERE ID(userFridge)={fridegID}" +
+            "MATCH (ingr_type:Ingr_Type)"+
+            "WHERE ID(ingr_type)={ingr_type_ID}"+
+            "MATCH (ingr_type)<-[r:"+FRIDGE_CONTAINTS+"]-(userFridge)"+
+            "DELETE r,ingr_type")
+    void deleteIngr_type(@Param("userID") Long fridegID,@Param("ingr_type_ID") Long ingr_type_ID);
+
 }

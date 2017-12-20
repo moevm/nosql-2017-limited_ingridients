@@ -25,6 +25,11 @@ public class Dish_TypeController {
         dish_typeService.createNewDish_Type(id,label);
     }
 
+    @RequestMapping("/delete")
+    public void  deleteDish_Type(@RequestParam(value = "id") Long id,@RequestParam(value = "dishID") Long dishID) {
+        dish_typeService.deleteDish_Type(id,dishID);
+    }
+
     @RequestMapping("/getAll")
     public Collection<Dish_Type> getAll(@RequestParam(value = "id") Long id) {
         return dish_typeService.getAll(id);

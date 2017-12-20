@@ -1,7 +1,6 @@
 package movies.spring.data.neo4j.repositories;
 
 import movies.spring.data.neo4j.domain.Dish_Type;
-import movies.spring.data.neo4j.domain.Ingredient;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -18,6 +17,14 @@ public interface Dish_TypeRepository extends PagingAndSortingRepository<Dish_Typ
            "CREATE (ingr:Dish_Type {label:{label}})"+
            "CREATE (ingr)<-[:"+MEAL_CONTAINTS+"]-(newIngr_Type)")
     void createNewDish_Type(@Param("id") Long id, @Param("label") String label);
+
+    @Query("MATCH (newIngr_Type:Meal)"+
+            "WHERE ID(newIngr_Type)={id}"+
+            "MATCH (dish:Dish_Type)"+
+            "WHERE ID(dish)={dish_id}"+
+            "MATCH (dish)<-[r:"+MEAL_CONTAINTS+"]-(newIngr_Type)"+
+            "DELETE r,dish")
+    void deleteDish_Type(@Param("id") Long id, @Param("dish_id") Long dish_id);
 
     @Query("MATCH (newIngr_Type:Meal)-[r:"+MEAL_CONTAINTS+"]->(m:Dish_Type) WHERE ID(newIngr_Type)={id} RETURN r,newIngr_Type,m")
     Collection<Dish_Type> getAll(@Param("id") Long id);

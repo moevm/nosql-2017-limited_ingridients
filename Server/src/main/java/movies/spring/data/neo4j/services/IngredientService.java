@@ -24,6 +24,15 @@ public class IngredientService {
         ingredientRepository.createNewReceptIngredient(receptlabel,label,weight,measure);
     }
 
+    public void deleteIngredient(String typeLabel,Long ingr_id){
+        ingredientRepository.deleteIngredient(typeLabel,ingr_id);
+    }
+
+
+    public void deleteIngredientFromRecept(String receptLabel, Long ingr_id){
+        ingredientRepository.deleteIngredientFromRecept(receptLabel,ingr_id);
+    }
+
     @Transactional()
     public void addSomeWeight(String type_label, String ingr_label,Double weight){
         ingredientRepository.addSomeWeight(type_label,ingr_label,weight);

@@ -20,6 +20,11 @@ public class Dish_TypeService {
         dish_typeRepository.createNewDish_Type(id,label);
     }
 
+    @Transactional()
+    public void deleteDish_Type(Long id, Long dish_id){
+        dish_typeRepository.deleteDish_Type(id,dish_id);
+    }
+
     @Transactional(readOnly = true)
     public Collection<Dish_Type> getAll(Long id) {
         return dish_typeRepository.getAll(id);

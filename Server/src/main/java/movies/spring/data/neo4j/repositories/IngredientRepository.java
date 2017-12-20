@@ -19,6 +19,21 @@ public interface IngredientRepository extends PagingAndSortingRepository<Ingredi
            "CREATE (ingr)<-[:"+TYPES_INGR_CONTAINTS+"]-(newIngr_Type)")
     void createNewIngredient(@Param("typeLabel") String typeLabel, @Param("label") String label, @Param("weight") Double weight, @Param("measure") String measure);
 
+    @Query("MATCH (newIngr_Type:Ingr_Type {label:{typeLabel}})"+
+            "MATCH (ingr:Ingredient)"+
+            "WHERE ID(ingr)={ingr_id}"+
+            "MATCH (ingr)<-[r:"+TYPES_INGR_CONTAINTS+"]-(newIngr_Type)"+
+            "DELETE r,ingr")
+    void deleteIngredient(@Param("typeLabel") String typeLabel, @Param("ingr_id") Long ingr_id);
+
+    @Query("MATCH (newIngr_Type:Recept {label:{receptLabel}})"+
+            "MATCH (ingr:Ingredient)"+
+            "WHERE ID(ingr)={ingr_id}"+
+            "MATCH (ingr)<-[r:"+RECEPT_CONTAINTS+"]-(newIngr_Type)"+
+            "DELETE r,ingr")
+    void deleteIngredientFromRecept(@Param("receptLabel") String receptLabel, @Param("ingr_id") Long ingr_id);
+
+
     @Query("MATCH (newIngr_Type:Recept {label:{receptLabel}})"+
             "CREATE (ingr:Ingredient {label:{label}, weight:{weight}, measure:{measure}})"+
             "CREATE (ingr)<-[:"+RECEPT_CONTAINTS+"]-(newIngr_Type)")
