@@ -1,7 +1,5 @@
 package movies.spring.data.neo4j.repositories;
 
-import movies.spring.data.neo4j.domain.Ingredient;
-import movies.spring.data.neo4j.domain.Meal;
 import movies.spring.data.neo4j.domain.Recept;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -27,4 +25,13 @@ public interface ReceptRepository extends PagingAndSortingRepository<Recept, Lon
 
     @Query("MATCH (userFridge:Recept)-[r:"+RECEPT_CONTAINTS+"]->(m:Ingredient) WHERE ID(userFridge)={id} RETURN userFridge,r,m")
     Recept getByID(@Param("id") Long id);
+
+    @Query("MATCH (userFridge:Dish_Type)" +
+            "WHERE ID(userFridge)={id}" +
+            "MATCH (recept:Recept)" +
+            "WHERE ID(recept)={recept_id}" +
+            "MATCH (recept)<-[r:"+DISH_TYPE_CONTAINTS+"]-(userFridge)" +
+            "DELETE r,recept")
+    void deleteRecept(@Param("id") Long id, @Param("recept_id") Long recept_id);
+
 }

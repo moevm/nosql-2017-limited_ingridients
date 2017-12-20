@@ -22,4 +22,12 @@ public interface MealRepository extends PagingAndSortingRepository<Meal, Long> {
     @Query("MATCH (userFridge:Menu)-[:"+MENU_CONTAINTS+"]->(m:Meal) WHERE ID(userFridge)={id} RETURN m")
     Collection<Meal> getAll(@Param("id") Long id);
 
+    @Query("MATCH (userFridge:Menu)"+
+            "WHERE ID(userFridge)={id}" +
+            "MATCH (meal:Meal)"+
+            "WHERE ID(meal)={meal_id}" +
+            "MATCH (meal)<-[r:"+MENU_CONTAINTS+"]-(userFridge)"+
+            "DELETE r,meal")
+    void deleteMeal(@Param("id") Long id, @Param("meal_id") Long meal_id);
+
 }

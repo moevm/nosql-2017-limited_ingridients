@@ -30,4 +30,8 @@ public class MealController {
         return mealService.getAll(id);
     }
 
+    @RequestMapping("/delete")
+    public void deleteMeal(@RequestParam(value = "id") Long id,@RequestParam(value = "meal_id") Long meal_id){
+        mealService.deleteMeal(id,meal_id);
+    }
 }

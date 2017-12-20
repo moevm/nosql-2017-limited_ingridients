@@ -31,4 +31,8 @@ public class ReceptService {
         return receptRepository.getByID(id);
     }
 
+    @Transactional(readOnly = true)
+    public void deleteRecept(Long id, Long recept_id){
+        receptRepository.deleteRecept(id,recept_id);
+    }
 }

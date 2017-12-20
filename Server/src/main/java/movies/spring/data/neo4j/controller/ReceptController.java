@@ -47,6 +47,7 @@ public class ReceptController {
     public boolean checkReceptByID(@RequestParam(value = "id") Long id, @RequestParam(value = "fridgeid") Long fridgeid){
         Recept recept = receptService.getByID(id);
 
+        if(recept.getIngredients()==null) return true;
         int ingrs = recept.getIngredients().size();
 
         List<Ingredient> allIngrs = (List<Ingredient>) ingredientService.getAll(fridgeid);
@@ -77,5 +78,10 @@ public class ReceptController {
                 }
             }
         }
+    }
+
+    @RequestMapping("/delete")
+    public void deleteRecept(Long id, Long recept_id){
+        receptService.deleteRecept(id,recept_id);
     }
 }

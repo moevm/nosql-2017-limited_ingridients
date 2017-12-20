@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static movies.spring.data.neo4j.constants.EATRelations.MEAL_CONTAINTS;
-import static movies.spring.data.neo4j.constants.EATRelations.TYPES_INGR_CONTAINTS;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @NodeEntity
